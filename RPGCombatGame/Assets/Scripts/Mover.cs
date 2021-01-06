@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -6,10 +6,12 @@ using UnityEngine.AI;
 public class Mover : MonoBehaviour
 {
     NavMeshAgent agent;
+    Animator anim;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -18,6 +20,8 @@ public class Mover : MonoBehaviour
         {
             MoveToCursor();
         }
+
+        UpdateAnimator();
     }
 
     private void MoveToCursor()
@@ -30,7 +34,20 @@ public class Mover : MonoBehaviour
         {
             agent.destination = hit.point;
         }
+    }
 
+    private void UpdateAnimator()
+    {
+        // Get the global velocity from Nav Mesh Agent
+        Vector3 velocity = agent.velocity;
 
+        // Convert this into a local value relative to the character
+        Vector3 localVelocity = transform.InverseTransformDirection(velocity);
+
+        // Set the Animator's blend value to be equal to our desired forward speed (on the Z axis)
+        float speed = localVelocity.z;
+
+        anim.SetFloat("forwardSpeed", speed);
+        
     }
 }
