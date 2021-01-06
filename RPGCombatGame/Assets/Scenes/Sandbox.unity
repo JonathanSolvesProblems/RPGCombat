@@ -252,40 +252,25 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1663513814464046499}
   m_PrefabAsset: {fileID: 0}
---- !u!195 &558337231
-NavMeshAgent:
+--- !u!95 &558337231
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 558337230}
   m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 12
-  m_Acceleration: 20
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 1
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
---- !u!114 &558337235
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 558337230}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b64f0feee2da304f809ec425570c982, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 91420d2f7b07f0244bc11a7a53d09d52, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!4 &558337236 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1663513813947918705, guid: dc74cb8fc15ba4049a367f9ff40e6992,
@@ -1356,17 +1341,17 @@ PrefabInstance:
     - target: {fileID: 1663513813947918705, guid: dc74cb8fc15ba4049a367f9ff40e6992,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.53
+      value: -0.275
       objectReference: {fileID: 0}
     - target: {fileID: 1663513813947918705, guid: dc74cb8fc15ba4049a367f9ff40e6992,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.46
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1663513813947918705, guid: dc74cb8fc15ba4049a367f9ff40e6992,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1663513813947918705, guid: dc74cb8fc15ba4049a367f9ff40e6992,
         type: 3}
