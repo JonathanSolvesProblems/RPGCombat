@@ -9,9 +9,12 @@ namespace RPG.Control
 
         Mover mover;
 
+        Fighter fighter;
+
         void Start()
         {
             mover = GetComponent<Mover>();
+            fighter = GetComponent<Fighter>();
         }
 
         void Update()
@@ -33,12 +36,12 @@ namespace RPG.Control
 
                 if (Input.GetMouseButtonDown(0))
                 {
-                    GetComponent<Fighter>().Attack(target);
+                    fighter.Attack(target);
                 }
 
                 return true;
             }
-
+            
             return false;
         }
 
@@ -51,7 +54,7 @@ namespace RPG.Control
             {
                 if (Input.GetMouseButton(0))
                 {
-                    mover.MoveTo(hit.point);
+                    mover.StartMoveAction(hit.point);
                 }
 
                 return true;

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using RPG.Combat;
 
 namespace RPG.Movement
 {
@@ -10,10 +11,13 @@ namespace RPG.Movement
         NavMeshAgent agent;
         Animator anim;
 
+        Fighter fighter;
+
         void Start()
         {
             agent = GetComponent<NavMeshAgent>();
             anim = GetComponent<Animator>();
+            fighter = GetComponent<Fighter>();
         }
 
         void Update()
@@ -30,6 +34,12 @@ namespace RPG.Movement
         public void Stop()
         {
             agent.isStopped = true;
+        }
+
+        public void StartMoveAction(Vector3 destination)
+        {
+            fighter.Cancel(); // cancelling fighting before even starting to move each time.
+            MoveTo(destination);
         }
 
         private void UpdateAnimator()
