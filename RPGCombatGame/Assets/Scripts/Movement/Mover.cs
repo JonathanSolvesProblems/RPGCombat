@@ -1,22 +1,18 @@
 using UnityEngine;
 using UnityEngine.AI;
-using RPG.Combat;
 using RPG.Core;
 
 namespace RPG.Movement
 {
-    public class Mover : MonoBehaviour
+    public class Mover : MonoBehaviour, IAction
     {
         NavMeshAgent agent;
         Animator anim;
-
-        Fighter fighter;
 
         void Start()
         {
             agent = GetComponent<NavMeshAgent>();
             anim = GetComponent<Animator>();
-            fighter = GetComponent<Fighter>();
         }
 
         void Update()
@@ -30,7 +26,7 @@ namespace RPG.Movement
             agent.isStopped = false;
         }
 
-        public void Stop()
+        public void Cancel()
         {
             agent.isStopped = true;
         }
@@ -38,7 +34,6 @@ namespace RPG.Movement
         public void StartMoveAction(Vector3 destination)
         {
             GetComponent<ActionScheduler>().StartAction(this);
-            fighter.Cancel(); // cancelling fighting before even starting to move each time.
             MoveTo(destination);
         }
 
