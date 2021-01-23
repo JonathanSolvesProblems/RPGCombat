@@ -1,6 +1,7 @@
 using UnityEngine;
 using RPG.Movement;
 using RPG.Core;
+using UnityEngine.UIElements;
 
 namespace RPG.Combat
 {
@@ -8,12 +9,14 @@ namespace RPG.Combat
     {
         [SerializeField] private float weaponRange = 2f;
         [SerializeField] private float timeBtwAttacks = 1f;
+        [SerializeField] private float weaponDamage = 5f;
 
         private float timeSinceLastAttack = 0;
         private Transform target;
         private Mover mover;
         private ActionScheduler actionScheduler;
         private Animator animator;
+        private Health health;
 
 
         void Start()
@@ -21,6 +24,8 @@ namespace RPG.Combat
             mover = GetComponent<Mover>();
             actionScheduler = GetComponent<ActionScheduler>();
             animator = GetComponent<Animator>();
+            target = GameObject.Find("Enemy").transform;
+            health = target.GetComponent<Health>();
         }
 
         private void Update()
@@ -29,7 +34,7 @@ namespace RPG.Combat
             
             if (target == null) return;
 
-            if (!GetIsInRange())
+            if (!GetIsInRange()) // bug to fix, always moves to target.
             {
                 mover.MoveTo(target.position);
             }
@@ -45,9 +50,17 @@ namespace RPG.Combat
             // throttling attacks
             if (timeSinceLastAttack > timeBtwAttacks)
             {
+                // will trigger Hit() event
                 animator.SetTrigger("attack");
                 timeSinceLastAttack = 0;
+                
             }
+        }
+        
+        // hit animation event
+        void Hit()
+        {
+            health.TakeDamage(weaponDamage);
         }
 
         private bool GetIsInRange()
@@ -64,12 +77,6 @@ namespace RPG.Combat
         public void Cancel()
         {
             target = null;
-        }
-
-        // animation event
-        void Hit()
-        {
-
         }
     }
 }
